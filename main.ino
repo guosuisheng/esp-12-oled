@@ -410,13 +410,13 @@ void setup(void) {
 */
 unsigned long counter;
 
+char* time_str = (char*)malloc(20 * sizeof(char)); // Allocate memory
+
 char* secondsToTimeString(long int total_seconds) {
     int hours = total_seconds / 3600;
     int remaining_seconds = total_seconds % 3600;
     int minutes = remaining_seconds / 60;
     int seconds = remaining_seconds % 60;
-
-    char* time_str = (char*)malloc(20 * sizeof(char)); // Allocate memory
 
     sprintf(time_str, "%02d:%02d:%02d", hours, minutes, seconds);
     return time_str;
@@ -454,6 +454,7 @@ void loop(void) {
   u8g2.print(time_string);
   u8g2.sendBuffer();
   
+  Serial.print(ESP.getFreeHeap());
   delay(1000);
 }
 
